@@ -1,3 +1,4 @@
+import 'package:artplatform/widgets/imageupload.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:artplatform/widgets/longwritingbar.dart';
 import 'package:artplatform/widgets/shortwritingbar.dart';
@@ -32,16 +33,19 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
           ),
           title: Row(
             children: [
-              Image.asset(
-                "images/apflogo.png",
-                width: 54,
-                height: 54,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
+                child: Image.asset(
+                  "images/apflogo.png",
+                  width: 52,
+                  height: 52,
+                ),
               ),
               const Text(
                 'Art Platform',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 30,
+                  fontSize: 28,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -88,7 +92,7 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
                       const Padding(
                         padding: EdgeInsets.all(4.0),
                         child: Text(
-                          '사진/동영상',
+                          '사진',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -102,20 +106,9 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
                           ),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        width: 90,
-                        height: 90,
-                        child: IconButton(
-                          onPressed: () async {
-                            multiImage = await picker.pickMultiImage();
-                            setState(() {
-                              //multiImage를 통해 갤러리에서 가지고 온 사진들은 리스트 변수에 저장되므로 addAll()을 사용해서 images와 multiImage 리스트를 합쳐줍니다.
-                              images.addAll(multiImage);
-                            });
-                          },
-                          icon: const Icon(Icons.add_rounded),
-                          iconSize: 35,
-                          color: const Color.fromARGB(255, 135, 135, 135),
-                        ),
+                        width: 360,
+                        height: 200,
+                        child: const ImageUpload(),
                       ),
                     ],
                   )),
@@ -163,7 +156,7 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
           backgroundColor: const Color.fromARGB(255, 255, 84, 84),
           onPressed: () {},
           child: const Text(
-            '업로드',
+            'SAVE',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
