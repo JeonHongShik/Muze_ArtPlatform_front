@@ -6,6 +6,15 @@ class KakaoLogin implements SocialLogin {
     OAuthToken? _token = await UserApi.instance.loginWithKakaoTalk();
     await TokenManagerProvider.instance.manager.setToken(_token);
 
+  try {
+      AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
+      print('토큰 정보 보기 성공'
+          '\n회원정보: ${tokenInfo.id}'
+          '\n만료시간: ${tokenInfo.expiresIn} 초');
+    } catch (error) {
+      print('토큰 정보 보기 실패 $error');
+    }
+    
     try {
       User user = await UserApi.instance.me();
       print('사용자 정보 요청 성공'
