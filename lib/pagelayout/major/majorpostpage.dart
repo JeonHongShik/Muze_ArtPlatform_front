@@ -1,6 +1,7 @@
 import 'package:artplatform/api/resume_api/resume_model.dart';
-import 'package:artplatform/widget/short/shortpostbar.dart';
-import 'package:artplatform/widget/long/longpostbar.dart';
+import 'package:artplatform/widgets/bar/long/longpostbar.dart';
+import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
+
 import 'package:flutter/material.dart';
 
 class Majorpostpage extends StatelessWidget {

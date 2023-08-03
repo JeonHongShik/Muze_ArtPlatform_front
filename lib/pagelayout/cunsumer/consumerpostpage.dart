@@ -1,7 +1,7 @@
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
+import 'package:artplatform/widgets/bar/long/longpostbar.dart';
+import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
 import 'package:flutter/material.dart';
-import 'package:artplatform/widget/short/shortpostbar.dart';
-import 'package:artplatform/widget/long/longpostbar.dart';
 
 class Consumerpostpage extends StatelessWidget {
   const Consumerpostpage({super.key});

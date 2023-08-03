@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:artplatform/pagelayout/major/majormainpage.dart';
 import 'package:flutter/material.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -13,6 +14,7 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() {
+  KakaoSdk.init(nativeAppKey: '62aa2f65099eaaf2f9f5ea6c5ca60a36');
   runApp(const MyApp());
 }
 
