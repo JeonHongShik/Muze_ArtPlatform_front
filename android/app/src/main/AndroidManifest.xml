@@ -4,6 +4,17 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
+         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity"
+        android:exported="true">
+   <intent-filter android:label="flutter_web_auth">
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <category android:name="android.intent.category.BROWSABLE" />
+    
+      <!-- Redirect URI, "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식 -->
+        <data android:scheme="kakao62aa2f65099eaaf2f9f5ea6c5ca60a36" android:host="oauth"/>
+        </intent-filter>
+</activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
