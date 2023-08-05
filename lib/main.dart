@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:artplatform/login/loginpage.dart';
+import 'package:artplatform/login/testuserselect.dart';
+import 'package:artplatform/pagelayout/cunsumer/cunsumermain.dart';
 import 'package:artplatform/pagelayout/major/majormainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -29,9 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MajorMainPage(),
+      home: TestUserSelect(),
     );
   }
 }
-
-//test

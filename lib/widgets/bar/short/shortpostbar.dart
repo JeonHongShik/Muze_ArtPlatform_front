@@ -21,7 +21,7 @@ class Shortpostbar extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 25),
-          height: 52,
+          height: 70,
           width: 160,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class Shortpostbar extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(left: 25),
-          height: 52,
+          height: 70,
           width: 160,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

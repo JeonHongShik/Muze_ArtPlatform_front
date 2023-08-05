@@ -1,7 +1,7 @@
-import 'package:artplatform/pagelayout/boardpage/resumestageboardpage.dart';
+import 'package:artplatform/pagelayout/boardpage/ma_stageboardpage.dart';
 import 'package:artplatform/pagelayout/mypages/majormypage.dart';
-import 'package:artplatform/pagelayout/boardpage/resumeboardpage.dart';
-import 'package:artplatform/pagelayout/boardpage/favorites.dart';
+import 'package:artplatform/pagelayout/boardpage/ma_resumeboardpage.dart';
+import 'package:artplatform/pagelayout/boardpage/ma_favorites.dart';
 import 'package:artplatform/pagelayout/major/majormainbody.dart';
 import 'package:flutter/material.dart';
 
@@ -28,11 +28,11 @@ class _MajorMainPageState extends State<MajorMainPage> {
           children: [
             Image.asset(
               'assets/images/Logo1.png',
-              fit: BoxFit.contain,
-              height: 40,
+              fit: BoxFit.cover,
+              height: 35,
             ),
             Text(
-              'Art Platform',
+              'Muze',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 25,
@@ -41,8 +41,10 @@ class _MajorMainPageState extends State<MajorMainPage> {
             ),
           ],
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
+
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+
         actions: [
           IconButton(
             onPressed: () {
@@ -53,15 +55,15 @@ class _MajorMainPageState extends State<MajorMainPage> {
             },
             icon: const Icon(Icons.account_circle),
             color: Colors.pink,
-            iconSize: 35,
+            iconSize: 40,
           )
         ],
       ),
       body: [
         MajorMainBody(),
-        ResumeStageBoardPage(),
-        ResumeBoardPage(),
-        FavoritesPage(),
+        MaResumeStageBoardPage(),
+        MaResumeBoardPage(),
+        MaFavoritesPage(),
       ][tab], //바디 하단바 아이콘 누르면 이동
       drawer: Drawer(
         child: ListView(
@@ -76,7 +78,7 @@ class _MajorMainPageState extends State<MajorMainPage> {
                   Image.asset(
                     'assets/images/Logo1.png',
                     fit: BoxFit.contain,
-                    height: 40,
+                    height: 50,
                   ),
                   Text(
                     'Art Platform',

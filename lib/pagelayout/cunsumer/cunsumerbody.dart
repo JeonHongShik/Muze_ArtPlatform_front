@@ -57,7 +57,8 @@ class ConsumerMainBody extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 200,
+                      height: 225,
+                      width: 400,
                       child: resumesList(snapshot),
                     ),
                   ],
@@ -106,7 +107,8 @@ class ConsumerMainBody extends StatelessWidget {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 200,
+                      height: 230,
+                      width: 400,
                       child: consumersList(snapshot),
                     ),
                   ],
@@ -143,8 +145,10 @@ class ConsumerMainBody extends StatelessWidget {
               ),
             );
           },
-          child: SizedBox(
-            width: 400,
+          child: Container(
+            //이 컨테이너는 둥근 박스 뒷쪽 박스
+            width: 400, //여기서는 가로 조절만 됨, 세로 조절은 위에서 됨.
+            color: Colors.white,
             child: Column(
               children: [
                 Container(
@@ -152,11 +156,12 @@ class ConsumerMainBody extends StatelessWidget {
                     top: 10,
                   ),
                   child: Container(
+                    // Radius 적용된 박스
                     padding: EdgeInsets.only(
                       top: 10,
                     ),
-                    width: 350,
-                    height: 180,
+                    width: 360,
+                    height: 200, //둥근 박스 높이
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -168,12 +173,12 @@ class ConsumerMainBody extends StatelessWidget {
                             offset: Offset(0, 3),
                           )
                         ]),
-                    child: Container(
-                      //API 요소 위치를 위한 박스
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: Column(
-                        children: [
-                          Row(
+                    child: Column(
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          width: 330,
+                          child: Row(
                             //유저 프로필, 이름, 북마크
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -181,8 +186,13 @@ class ConsumerMainBody extends StatelessWidget {
                                 //유저 프로필, 이름 붙이기 위한 Row
                                 children: [
                                   Icon(
-                                    Icons.person,
+                                    Icons.account_circle,
                                     size: 50,
+                                    color: Colors.red.shade200,
+                                  ),
+                                  SizedBox(
+                                    //아이콘과 이름 사이 여백
+                                    width: 5,
                                   ),
                                   Text(
                                     resume.author,
@@ -190,104 +200,93 @@ class ConsumerMainBody extends StatelessWidget {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  ),
+                                  )
                                 ],
                               ),
                               Icon(
                                 Icons.bookmark_border,
                                 size: 35,
-                              )
+                              ),
                             ],
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            width: 310,
-                            height: 1,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        ),
+                        SizedBox(
+                          // 나누는 바 윗쪽 여백
+                          height: 15,
+                        ),
+                        Container(
+                          // 사용자 이름과 요소 나누는 바
+                          width: 320,
+                          height: 1,
+                          color: Colors.pink,
+                        ),
+                        SizedBox(
+                          // 나누는 바 아래쪽 여백
+                          height: 20,
+                        ),
+                        Container(
+                          color: Colors.white,
+                          width: 300,
+                          height: 100,
+                          child: Column(
                             children: [
-                              SizedBox(
-                                width: 70,
-                                height: 25,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.pink.withOpacity(0.3),
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(20),
-                                //   ),
-                                // ),
-                                child: Center(
-                                  child: Row(
-                                    //아이콘 + 정보
+                              Row(
+                                //나이, 성별 넣기 위한 Row
+                                children: [
+                                  Row(
+                                    //아이콘+나이 넣기 위한 Row
                                     children: [
-                                      Icon(Icons.abc),
+                                      Icon(Icons.person),
                                       Text(
-                                        resume.age.toString(),
+                                        "${resume.age}세",
                                         style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    //나이와 성별 사이 여백
+                                    width: 90,
+                                  ),
+                                  Row(
+                                    //아이콘+성별 넣기 위한 Row
+                                    children: const [
+                                      Icon(Icons.male),
+                                      Icon(Icons.female),
+                                      Text(
+                                        "남성",
+                                        style: TextStyle(
+                                          fontSize: 17,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ],
-                                  ),
-                                ),
+                                  )
+                                ],
                               ),
                               SizedBox(
-                                width: 70,
-                                height: 25,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.pink.withOpacity(0.3),
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(20),
-                                //   ),
-                                // ),
-                                child: Center(
-                                    child: Row(
-                                  children: [
-                                    Icon(Icons.abc),
-                                    Text(
-                                      resume.career,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                )),
+                                //나이,성별과 학력 사이 여백
+                                height: 30,
                               ),
-                              SizedBox(
-                                width: 70,
-                                height: 25,
-                                // decoration: BoxDecoration(
-                                //   color: Colors.pink.withOpacity(0.3),
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(20),
-                                //   ),
-                                // ),
-                                child: Center(
-                                    child: Row(
-                                  children: [
-                                    Icon(Icons.abc),
-                                    Text(
-                                      resume.education,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              Row(
+                                //아이콘+학력 넣기 위한 Row
+                                children: [
+                                  Icon(Icons.school),
+                                  Text(
+                                    resume.education,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.black,
                                     ),
-                                  ],
-                                )),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -304,7 +303,6 @@ class ConsumerMainBody extends StatelessWidget {
 
   ListView consumersList(AsyncSnapshot<List<ConsumerModel>> snapshot) {
     //listView 메소드
-
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       itemCount: 5,
@@ -323,8 +321,10 @@ class ConsumerMainBody extends StatelessWidget {
               ),
             );
           },
-          child: SizedBox(
-            width: 400,
+          child: Container(
+            //이 컨테이너는 둥근 박스 뒷쪽 박스
+            width: 400, //여기서는 가로 조절만 됨, 세로 조절은 위에서 됨.
+            color: Colors.white,
             child: Column(
               children: [
                 Container(
@@ -332,11 +332,12 @@ class ConsumerMainBody extends StatelessWidget {
                     top: 10,
                   ),
                   child: Container(
+                    // Radius 적용된 박스
                     padding: EdgeInsets.only(
                       top: 10,
                     ),
-                    width: 350,
-                    height: 180,
+                    width: 360,
+                    height: 200, //둥근 박스 높이
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -348,102 +349,150 @@ class ConsumerMainBody extends StatelessWidget {
                             offset: Offset(0, 3),
                           )
                         ]),
-                    child: Container(
-                      //API 요소 위치를 위한 박스
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: Column(
-                        children: [
-                          Row(
-                            //유저 프로필, 이름, 북마크
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                          color: Colors.white,
+                          width: 330,
+                          height: 40,
+                          child: Column(
+                            //유저,북마크와 제목
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                //유저 프로필, 이름 붙이기 위한 Row
+                                //유저 프로필, 이름, 북마크
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(
-                                    Icons.person,
-                                    size: 50,
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        consumer.title,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    consumer.title,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  // Icon(
+                                  //   Icons.bookmark_border,
+                                  //   size: 30,
+                                  // ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: const [
+                                  SizedBox(
+                                    width: 5,
                                   ),
                                 ],
                               ),
-                              Icon(
-                                Icons.bookmark_border,
-                                size: 35,
-                              )
                             ],
                           ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        ),
+                        SizedBox(
+                          // 나누는 바 윗쪽 여백
+                          height: 15,
+                        ),
+                        Container(
+                          // 사용자 이름과 요소 나누는 바
+                          width: 320,
+                          height: 1,
+                          color: Colors.pink,
+                        ),
+                        SizedBox(
+                          // 나누는 바 아래쪽 여백
+                          height: 20,
+                        ),
+                        Container(
+                          color: Colors.white,
+                          width: 300,
+                          height: 80,
+                          child: Column(
                             children: [
-                              Container(
-                                width: 70,
-                                height: 25,
-                                decoration: BoxDecoration(
-                                  color: Colors.pink.withOpacity(0.3),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
+                              Row(
+                                //나이, 성별 넣기 위한 Row
+                                children: [
+                                  Row(
+                                    //아이콘+나이 넣기 위한 Row
+                                    children: [
+                                      Icon(Icons.person),
+                                      Text(
+                                        consumer.type,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    consumer.type,
+                                  SizedBox(
+                                    //나이와 성별 사이 여백
+                                    width: 35,
+                                  ),
+                                  Row(
+                                    //아이콘+성별 넣기 위한 Row
+                                    children: const [
+                                      Icon(Icons.male),
+                                      Icon(Icons.female),
+                                      Text(
+                                        "남성",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        //나이와 성별 사이 여백
+                                        width: 35,
+                                      ),
+                                      Row(
+                                        //아이콘+학력 넣기 위한 Row
+                                        children: [
+                                          Icon(Icons.attach_money),
+                                          Text(
+                                            "20만원",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                //나이,성별과 학력 사이 여백
+                                height: 30,
+                              ),
+                              Row(
+                                //아이콘+학력 넣기 위한 Row
+                                children: [
+                                  Icon(Icons.location_on),
+                                  Text(
+                                    consumer.location,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                     ),
-                                  ),
-                                ),
+                                  )
+                                ],
                               ),
-                              Container(
-                                width: 70,
-                                height: 25,
-                                decoration: BoxDecoration(
-                                  color: Colors.pink.withOpacity(0.3),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
-                                  ),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  consumer.location,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
-                              ),
-                              Container(
-                                width: 70,
-                                height: 25,
-                                decoration: BoxDecoration(
-                                  color: Colors.pink.withOpacity(0.3),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
-                                  ),
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  consumer.info,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
-                              )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

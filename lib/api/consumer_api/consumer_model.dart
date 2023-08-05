@@ -1,34 +1,35 @@
 class ConsumerModel {
   final String author,
+      agency,
       title,
       info,
       type,
       deadline,
       date,
       location,
-      intro,
       profile,
-      call,
-      pay;
+      call;
+  // pay;
   final int id;
 
   ConsumerModel.fromjson(Map<String, dynamic> json)
-      : author = json['author'],
-        id = json['id'],
+      : id = json['id'],
+        author = json['author'],
+        agency = json['agency'],
+        call = json['call'],
         title = json['title'],
         info = json['info'],
         type = json['type'],
         deadline = json['deadline'],
         date = json['date'],
         location = json['location'],
-        intro = json['intro'],
-        call = json['call'],
-        profile = json['profile'],
-        pay = json['pay'];
+        profile = json['profile'];
+  // pay = json['pay'];
 }
 
 class ConsumerFormData {
   String? author,
+      agency,
       title,
       info,
       type,
@@ -37,13 +38,14 @@ class ConsumerFormData {
       location,
       intro,
       call,
-      pay,
+      // pay,
       profile;
   int? id;
 
   ConsumerFormData(
-      {this.author,
-      this.id,
+      {this.id,
+      this.author,
+      this.agency,
       this.title,
       this.info,
       this.type,
@@ -52,7 +54,7 @@ class ConsumerFormData {
       this.location,
       this.intro,
       this.call,
-      this.pay,
+      // this.pay,
       this.profile});
 
   Map<String, dynamic> toJson() => {
@@ -66,7 +68,8 @@ class ConsumerFormData {
         'location': location,
         'intro': intro,
         'call': call,
-        'pay': pay,
+        // 'pay': pay,
         'profile': profile,
+        'agency': agency,
       };
 }

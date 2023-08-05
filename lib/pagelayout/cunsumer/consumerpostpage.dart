@@ -90,9 +90,9 @@ class Consumerpostpage extends StatelessWidget {
                             children: [
                               Shortpostbar(
                                 title_1: '기관명',
-                                data1: 'text',
+                                data1: consumer.agency,
                                 title_2: '무대정보',
-                                data2: consumer.info,
+                                data2: 'text',
                               ), //기관명, 무대정보
                               SizedBox(
                                 height: 50,
@@ -101,7 +101,7 @@ class Consumerpostpage extends StatelessWidget {
                                 title_1: '공연종류',
                                 data1: consumer.type,
                                 title_2: '페이',
-                                data2: 'text',
+                                data2: '200000원',
                               ), // 공연종류, 페이
                               SizedBox(
                                 height: 50,
@@ -127,12 +127,15 @@ class Consumerpostpage extends StatelessWidget {
                                 data: consumer.profile,
                               ),
                               SizedBox(
-                                height: 150,
+                                height: 100,
                               ),
                               Longpostbar(
                                 title: '공연소개',
-                                data: consumer.intro,
+                                data: consumer.info,
                               ),
+                              SizedBox(
+                                height: 100,
+                              )
                             ],
                           )
                         ],

@@ -1,60 +1,108 @@
-import 'package:artplatform/api/resume_api/resume_apidata.dart';
-import 'package:artplatform/api/resume_api/resume_model.dart';
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
+import 'package:artplatform/api/resume_api/resume_apidata.dart';
+import 'package:artplatform/api/resume_api/resume_model.dart';
 
-class ConsumerManagementPage extends StatelessWidget {
-  ConsumerManagementPage({super.key});
+class CoResumeBoardPage extends StatelessWidget {
+  CoResumeBoardPage({super.key});
 
   final Future<List<ResumeModel>> resumes = ResumeApiData.getResume();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.black),
-          centerTitle: true,
-          title: Text(
-            '게시글 관리',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ),
-        body: Column(children: [
-          FutureBuilder(
-            future: resumes,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    SizedBox(
-                        height: 725, child: resumesList(snapshot)), //리스트뷰 화면 크기
-                  ],
+            Row(
+              children: [
+                Container(
+                  color: Colors.pink.withOpacity(0.2),
+                  margin: EdgeInsets.only(left: 22),
+                  child: Text(
+                    "이력서 게시판",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              //검색바, 필터아이콘 추가를 위한 Row
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  //검색바
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 5),
+                  width: 330,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 10,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      hintText: '인재를 검색해보세요!',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  //필터 아이콘
+                  child: Container(
+                    margin: EdgeInsets.only(right: 12),
+                    child: PopupMenuButton(
+                      icon: Icon(
+                        Icons.filter_list_alt,
+                        size: 30,
+                      ),
+                      itemBuilder: ((context) => [
+                            PopupMenuItem(value: 1, child: Text("first")),
+                            PopupMenuItem(value: 2, child: Text("Second")),
+                          ]),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            FutureBuilder(
+              future: resumes,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 620, child: resumesList(snapshot)),
+                    ],
+                  );
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
                 );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
-        ]),
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 
   ListView resumesList(AsyncSnapshot<List<ResumeModel>> snapshot) {
     //listView 메소드
+    List<ResumeModel> reversedList = snapshot.data!.reversed.toList();
 
     return ListView.separated(
       scrollDirection: Axis.vertical,
-      itemCount: 1,
+      itemCount: reversedList.length,
       itemBuilder: (context, index) {
-        var resume = snapshot.data![index];
+        var resume = reversedList[index];
 
         return GestureDetector(
           onTap: () {
@@ -129,9 +177,8 @@ class ConsumerManagementPage extends StatelessWidget {
                                 ],
                               ),
                               Icon(
-                                Icons.bookmark_outlined,
+                                Icons.bookmark_border,
                                 size: 35,
-                                color: Colors.pink,
                               ),
                             ],
                           ),

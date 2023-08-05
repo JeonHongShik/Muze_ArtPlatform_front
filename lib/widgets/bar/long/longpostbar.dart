@@ -18,8 +18,8 @@ class Longpostbar extends StatelessWidget {
           children: [
             Container(
               margin: const EdgeInsets.only(left: 25),
-              height: 56,
-              width: 160,
+              height: 80,
+              width: 360,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

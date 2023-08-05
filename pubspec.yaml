@@ -54,6 +54,7 @@ dependencies:
   intl: any
   kakao_flutter_sdk: ^1.5.0
   localization: ^2.1.0
+  multi_image_picker: ^4.8.01
   #kakao_flutter_sdk: ^1.5.0
 
 dev_dependencies:

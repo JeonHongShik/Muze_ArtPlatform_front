@@ -278,10 +278,10 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                 ),
                               ),
                             ),
-                            key: ValueKey(5),
-                            onChanged: (value) {
-                              formData.pay = value;
-                            },
+                            // key: ValueKey(5), // pay기능 에러로 추후 다시 삽입 예정
+                            // onChanged: (value) {
+                            //   formData.pay = value;
+                            // },
                           ),
                         ),
                       ],

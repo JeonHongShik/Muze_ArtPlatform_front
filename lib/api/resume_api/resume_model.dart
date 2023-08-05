@@ -1,5 +1,13 @@
+import 'dart:io';
+
 class ResumeModel {
-  final String author, education, award, career, introduce, call;
+  final String author,
+      education,
+      award,
+      career,
+      introduce,
+      call,
+      profile; //profile은 File 형식
   final int id, age;
 
   ResumeModel.fromjson(Map<String, dynamic> json)
@@ -10,11 +18,18 @@ class ResumeModel {
         award = json['award'],
         career = json['career'],
         introduce = json['introduce'],
-        call = json['call'];
+        call = json['call'],
+        profile = json['profile'];
 }
 
 class ResumeFormData {
-  String? author, education, award, career, introduce, call, profile;
+  String? author,
+      education,
+      award,
+      career,
+      introduce,
+      call,
+      profile; //profile은 File 형식
   int? id, age;
 
   ResumeFormData({
@@ -26,6 +41,7 @@ class ResumeFormData {
     this.age,
     this.id,
     this.call,
+    this.profile,
   });
 
   Map<String, dynamic> toJson() => {
@@ -37,5 +53,6 @@ class ResumeFormData {
         'call': call,
         'age': age,
         'id': id,
+        'profile': profile,
       };
 }

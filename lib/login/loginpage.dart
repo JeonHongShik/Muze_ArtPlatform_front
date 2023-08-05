@@ -30,7 +30,7 @@ class _loginState extends State<Loginpage> {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/loginimage.png'), // 배경 이미지
+            image: AssetImage('assets/images/loginimage.png'), // 배경 이미지
           ),
         ),
         child: Scaffold(
@@ -50,13 +50,13 @@ class _loginState extends State<Loginpage> {
                     final String token = await kakaologin.login();
                     print(token);
                     final response = await http.post(
-                      Uri.parse('http://192.168.0.2:8000/account/kakaologin/'),
+                      Uri.parse('http://10.0.0.2:8000/account/kakaologin/'),
                       body: {"accessToken": token},
                     );
                     print("statuscode : ${response.statusCode}");
                   },
                   child: Image.asset(
-                    "images/kakao_login.png",
+                    "asstes/images/kakao_login.png",
                     fit: BoxFit.cover,
                   ),
                 ),

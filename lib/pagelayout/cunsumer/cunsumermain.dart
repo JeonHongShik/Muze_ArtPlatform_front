@@ -1,8 +1,10 @@
+import 'package:artplatform/pagelayout/boardpage/co_favorites.dart';
+import 'package:artplatform/pagelayout/boardpage/co_resumeboardpage.dart';
 import 'package:artplatform/pagelayout/mypages/cunsumermypage.dart';
-import 'package:artplatform/pagelayout/boardpage/resumeboardpage.dart';
-import 'package:artplatform/pagelayout/boardpage/stageboardpage.dart';
+import 'package:artplatform/pagelayout/boardpage/ma_resumeboardpage.dart';
+import 'package:artplatform/pagelayout/boardpage/co_stageboardpage.dart';
 import 'package:artplatform/pagelayout/cunsumer/cunsumerbody.dart';
-import 'package:artplatform/pagelayout/boardpage/favorites.dart';
+import 'package:artplatform/pagelayout/boardpage/ma_favorites.dart';
 import 'package:flutter/material.dart';
 
 class ConsumerMainPage extends StatefulWidget {
@@ -32,7 +34,7 @@ class _ConsumerMainPageState extends State<ConsumerMainPage> {
               height: 40,
             ),
             Text(
-              'Art Platform',
+              'Muze',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 25,
@@ -41,8 +43,8 @@ class _ConsumerMainPageState extends State<ConsumerMainPage> {
             ),
           ],
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        backgroundColor: Colors.white,
+        elevation: 0.5,
 
         actions: [
           IconButton(
@@ -62,9 +64,9 @@ class _ConsumerMainPageState extends State<ConsumerMainPage> {
       ),
       body: [
         ConsumerMainBody(),
-        StageBoardPage(),
-        ResumeBoardPage(),
-        FavoritesPage(),
+        CoStageBoardPage(),
+        CoResumeBoardPage(),
+        CoFavoritesPage(),
       ][tab], //바디 하단바 아이콘 누르면 이동
       drawer: Drawer(
         child: ListView(

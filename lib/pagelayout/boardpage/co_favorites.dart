@@ -1,39 +1,43 @@
-import 'package:artplatform/api/resume_api/resume_apidata.dart';
-import 'package:artplatform/api/resume_api/resume_model.dart';
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
+import 'package:artplatform/api/resume_api/resume_apidata.dart';
+import 'package:artplatform/api/resume_api/resume_model.dart';
 
-class ConsumerManagementPage extends StatelessWidget {
-  ConsumerManagementPage({super.key});
+class CoFavoritesPage extends StatelessWidget {
+  CoFavoritesPage({super.key});
 
   final Future<List<ResumeModel>> resumes = ResumeApiData.getResume();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.black),
-          centerTitle: true,
-          title: Text(
-            '게시글 관리',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(
+            height: 10,
           ),
-        ),
-        body: Column(children: [
+          Row(
+            children: [
+              Container(
+                color: Colors.pink.withOpacity(0.2),
+                margin: EdgeInsets.only(left: 22),
+                child: Text(
+                  "즐겨찾기 한 게시물",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
           FutureBuilder(
             future: resumes,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(
                   children: [
-                    SizedBox(
-                        height: 725, child: resumesList(snapshot)), //리스트뷰 화면 크기
+                    SizedBox(height: 644, child: resumesList(snapshot)),
                   ],
                 );
               }
@@ -42,7 +46,7 @@ class ConsumerManagementPage extends StatelessWidget {
               );
             },
           ),
-        ]),
+        ],
       ),
     );
   }
@@ -52,7 +56,7 @@ class ConsumerManagementPage extends StatelessWidget {
 
     return ListView.separated(
       scrollDirection: Axis.vertical,
-      itemCount: 1,
+      itemCount: 2,
       itemBuilder: (context, index) {
         var resume = snapshot.data![index];
 
