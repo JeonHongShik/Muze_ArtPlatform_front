@@ -1,10 +1,9 @@
 import 'package:artplatform/api/kakao_api/kakaoformdata.dart';
+import 'package:artplatform/login/testuserselect.dart';
 import 'package:artplatform/widgets/login/kakaologin.dart';
 import 'package:artplatform/widgets/login/logoutbutton.dart';
 
 import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -47,13 +46,17 @@ class _loginState extends State<Loginpage> {
                       backgroundColor: Colors.transparent,
                       elevation: 0.0),
                   onPressed: () async {
-                    final String token = await kakaologin.login();
-                    print(token);
-                    final response = await http.post(
-                      Uri.parse('http://10.0.0.2:8000/account/user/'),
-                      body: {"accessToken": token},
-                    );
-                    print("statuscode : ${response.statusCode}");
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return TestUserSelect();
+                    }));
+                    // final String token = await kakaologin.login();
+                    // print(token);
+                    // final response = await http.post(
+                    //   Uri.parse('http://10.0.0.2:8000/account/user/'),
+                    //   body: {"accessToken": token},
+                    // );
+                    // print("statuscode : ${response.statusCode}");
                   },
                   child: Image.asset("assets/images/kakao_login.png",
                       fit: BoxFit.cover),

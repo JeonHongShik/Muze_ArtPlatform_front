@@ -35,11 +35,13 @@ class CoFavoritesPage extends StatelessWidget {
             future: resumes,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    SizedBox(height: 644, child: resumesList(snapshot)),
-                  ],
-                );
+                return (snapshot.data!.isNotEmpty)
+                    ? Column(
+                        children: [
+                          SizedBox(height: 644, child: resumesList(snapshot)),
+                        ],
+                      )
+                    : Text('no data 상규');
               }
               return Center(
                 child: CircularProgressIndicator(),

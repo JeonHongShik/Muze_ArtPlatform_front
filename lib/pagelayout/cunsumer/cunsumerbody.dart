@@ -54,15 +54,17 @@ class ConsumerMainBody extends StatelessWidget {
             future: resumes,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 225,
-                      width: 400,
-                      child: resumesList(snapshot),
-                    ),
-                  ],
-                );
+                return (snapshot.data!.isNotEmpty)
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            height: 225,
+                            width: 400,
+                            child: resumesList(snapshot),
+                          ),
+                        ],
+                      )
+                    : Text('no data 상규');
               }
               return Center(
                 child: CircularProgressIndicator(),
@@ -104,15 +106,17 @@ class ConsumerMainBody extends StatelessWidget {
             future: consumers,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 230,
-                      width: 400,
-                      child: consumersList(snapshot),
-                    ),
-                  ],
-                );
+                return (snapshot.data!.isNotEmpty)
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            height: 230,
+                            width: 400,
+                            child: consumersList(snapshot),
+                          ),
+                        ],
+                      )
+                    : Text('no data 상규');
               }
               return Center(
                 child: CircularProgressIndicator(),
