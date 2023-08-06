@@ -124,7 +124,7 @@ class Consumerpostpage extends StatelessWidget {
                               ),
                               Longpostbar(
                                 title: '사진',
-                                data: consumer.profile,
+                                data: consumer.agency,
                               ),
                               SizedBox(
                                 height: 100,

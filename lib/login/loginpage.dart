@@ -29,9 +29,9 @@ class _loginState extends State<Loginpage> {
       home: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/images/loginimage.png'), // 배경 이미지
-          ),
+              fit: BoxFit.cover,
+              image: AssetImage('assets/images/loginimage.png') // 배경 이미지
+              ),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent, // 배경색을 투명으로 설정
@@ -50,15 +50,13 @@ class _loginState extends State<Loginpage> {
                     final String token = await kakaologin.login();
                     print(token);
                     final response = await http.post(
-                      Uri.parse('http://10.0.0.2:8000/account/kakaologin/'),
+                      Uri.parse('http://10.0.0.2:8000/account/user/'),
                       body: {"accessToken": token},
                     );
                     print("statuscode : ${response.statusCode}");
                   },
-                  child: Image.asset(
-                    "asstes/images/kakao_login.png",
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset("assets/images/kakao_login.png",
+                      fit: BoxFit.cover),
                 ),
                 ElevatedButton(
                   onPressed: () async {

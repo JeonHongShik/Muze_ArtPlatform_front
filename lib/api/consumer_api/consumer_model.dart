@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class ConsumerModel {
   final String author,
       agency,
@@ -11,6 +13,7 @@ class ConsumerModel {
       call;
   // pay;
   final int id;
+  // final File profile;
 
   ConsumerModel.fromjson(Map<String, dynamic> json)
       : id = json['id'],
@@ -37,10 +40,10 @@ class ConsumerFormData {
       date,
       location,
       intro,
-      call,
-      // pay,
-      profile;
+      call;
+  // pay,
   int? id;
+  File? profile;
 
   ConsumerFormData(
       {this.id,

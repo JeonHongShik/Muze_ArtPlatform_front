@@ -1,16 +1,26 @@
+class KakaoModel {
+  final int id;
+  final String name, profile;
+
+  KakaoModel.fromjson(Map<String, dynamic> json)
+      : id = json['id'],
+        name = json['name'],
+        profile = json['profile'];
+}
+
 class KakaoFormData {
-  int? tokenid;
-  String? nickname, profileUrl;
+  int? id;
+  String? name, profile;
 
   KakaoFormData({
-    this.tokenid,
-    this.nickname,
-    this.profileUrl,
+    this.id,
+    this.name,
+    this.profile,
   });
 
   Map<String, dynamic> toJson() => {
-        'id': tokenid,
-        'name': nickname,
-        'profileUrl': profileUrl,
+        'id': id,
+        'name': name,
+        'profile': profile,
       };
 }

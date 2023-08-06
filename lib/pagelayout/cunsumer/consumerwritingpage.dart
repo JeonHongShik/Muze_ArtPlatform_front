@@ -5,6 +5,8 @@ import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:http/http.dart' as http;
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class Consumerwritingpage extends StatefulWidget {
   const Consumerwritingpage({super.key});
@@ -18,6 +20,8 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
   TextEditingController dateinput2 = TextEditingController();
   final formKey = GlobalKey<FormState>();
   ConsumerFormData formData = ConsumerFormData();
+
+  List<XFile> userImages = [];
 
   @override
   void initState() {
@@ -65,22 +69,29 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'data',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            'data',
-                            style: TextStyle(
-                              color: Colors.grey,
+                          SizedBox(
+                            width: 100,
+                            height: 45,
+                            child: TextFormField(
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                label: Text('admin'),
+                              ),
+                              key: ValueKey(1),
+                              onChanged: (value) {
+                                formData.author = value;
+                              },
                             ),
                           ),
                         ],
@@ -97,7 +108,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Text(
-                        '게시글 제목',
+                        '제목',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -116,7 +127,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                             ),
                           ),
                         ),
-                        key: ValueKey(1),
+                        key: ValueKey(2),
                         onChanged: (value) {
                           formData.title = value;
                         },
@@ -156,9 +167,9 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                 ),
                               ),
                             ),
-                            key: ValueKey(2),
+                            key: ValueKey(3),
                             onChanged: (value) {
-                              formData.author = value;
+                              formData.agency = value;
                             },
                           ),
                         ),
@@ -168,48 +179,6 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                   SizedBox(
                     width: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    child: (Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                            '무대 정보',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 170,
-                          height: 45,
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            key: ValueKey(3),
-                            onChanged: (value) {
-                              formData.info = value;
-                            },
-                          ),
-                        ),
-                      ],
-                    )),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: (Column(
@@ -247,9 +216,11 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                       ],
                     )),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: (Column(
@@ -258,7 +229,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                         Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Text(
-                            '공연 페이',
+                            '페이',
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -278,10 +249,50 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                 ),
                               ),
                             ),
-                            // key: ValueKey(5), // pay기능 에러로 추후 다시 삽입 예정
-                            // onChanged: (value) {
-                            //   formData.pay = value;
-                            // },
+                            key: ValueKey(5),
+                            onChanged: (value) {
+                              // formData.pay = value;
+                            },
+                          ),
+                        ),
+                      ],
+                    )),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: (Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            '연락 수단',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 170,
+                          height: 45,
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            key: ValueKey(6),
+                            onChanged: (value) {
+                              formData.call = value;
+                            },
                           ),
                         ),
                       ],
@@ -290,8 +301,10 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    width: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: (Column(
@@ -308,75 +321,53 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                           ),
                         ),
                         Container(
-                            alignment: Alignment.centerRight,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                              borderRadius: BorderRadius.circular(15),
+                          alignment: Alignment.centerRight,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 0,
+                              color: Colors.transparent,
                             ),
-                            width: 170,
-                            height: 45,
-                            child: TextFormField(
-                              controller: dateinput1,
-                              decoration: InputDecoration(
-                                  icon: Icon(
-                                Icons.calendar_today,
-                                color: Colors.grey,
-                              )),
-                              readOnly: true,
-                              onTap: () {
-                                var date = DateTime.now();
-                                showMaterialDatePicker(
-                                  context: context,
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2100),
-                                  selectedDate: date,
-                                  onChanged: (value) => setState(
-                                    () {
-                                      date = value;
-                                      dateinput1.text =
-                                          "${date.year}-${date.month}-${date.day}";
-                                      formData.deadline =
-                                          "${date.year}-${date.month}-${date.day}";
-                                    },
-                                  ),
-                                );
-                              },
-                              // key: ValueKey(6),
-                              // onChanged: (value) {
-                              //   formData.deadline = value.toString();
-                              // },
-                            )
-                            // Row(
-                            //   children: [
-                            //     const Text(''),
-                            //     IconButton(
-                            //       onPressed: () {
-                            //         showDatePicker(
-                            //           context: context,
-                            //           initialDate: DateTime.now(),
-                            //           firstDate: DateTime(1900),
-                            //           lastDate: DateTime.now(),
-                            //         ).then((selectedDate) {
-                            //           setState(() {
-                            //             // _selectedDate = selectedDate;
-                            //           });
-                            //         });
-                            //       },
-                            //       icon: const Icon(
-                            //         Icons.calendar_month_outlined,
-                            //         color: Colors.grey,
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          width: 120,
+                          height: 45,
+                          child: TextFormField(
+                            controller: dateinput1,
+                            decoration: InputDecoration(
+                                icon: Icon(
+                              Icons.calendar_today,
+                              color: Colors.grey,
+                            )),
+                            readOnly: true,
+                            onTap: () {
+                              var date = DateTime.now();
+                              showMaterialDatePicker(
+                                context: context,
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2100),
+                                selectedDate: date,
+                                onChanged: (value) => setState(
+                                  () {
+                                    date = value;
+                                    dateinput1.text =
+                                        "${date.year}-${date.month}-${date.day}";
+                                    formData.deadline =
+                                        "${date.year}-${date.month}-${date.day}";
+                                  },
+                                ),
+                              );
+                            },
+                            key: ValueKey(7),
+                            onChanged: (value) {
+                              formData.deadline = value.toString();
+                            },
+                          ),
+                        ),
                       ],
                     )),
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 73,
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -397,11 +388,12 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                           alignment: Alignment.centerRight,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Colors.grey,
+                              width: 0,
+                              color: Colors.transparent,
                             ),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          width: 170,
+                          width: 120,
                           height: 45,
                           child: TextFormField(
                             controller: dateinput2,
@@ -429,51 +421,14 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                 ),
                               );
                             },
-                            // key: ValueKey(7),
-                            // onChanged: (value) {
-                            //   formData.date = value;
-                            // },
+                            key: ValueKey(8),
+                            onChanged: (value) {
+                              formData.date = value.toString();
+                            },
                           ),
                         ),
                         SizedBox(
                           width: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: (Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(
-                                  '공연 페이',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 170,
-                                height: 45,
-                                child: TextFormField(
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(15)),
-                                      borderSide: BorderSide(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  key: ValueKey(11),
-                                  onChanged: (value) {
-                                    formData.call = value;
-                                  },
-                                ),
-                              ),
-                            ],
-                          )),
                         ),
                       ],
                     )),
@@ -507,7 +462,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                             ),
                           ),
                         ),
-                        key: ValueKey(8),
+                        key: ValueKey(9),
                         onChanged: (value) {
                           formData.location = value;
                         },
@@ -521,40 +476,55 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                 child: (Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        '사진',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      width: 90,
-                      height: 90,
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            borderSide: BorderSide(
-                              color: Colors.white,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 17,
+                          ),
+                          Text(
+                            '사진',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                        key: ValueKey(9),
-                        onChanged: (value) {
-                          formData.profile = value;
+                          IconButton(
+                            key: ValueKey(10),
+                            icon: Icon(Icons.add_box_outlined),
+                            onPressed: () async {
+                              var picker = ImagePicker();
+                              List<XFile> images =
+                                  await picker.pickMultiImage();
+
+                              setState(() {
+                                userImages = images;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 100,
+                      width: 400,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: userImages.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 8),
+                            child: Image.file(
+                              File(userImages[index].path),
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          );
                         },
                       ),
-                      // child: const ImageUpload(),
                     ),
                   ],
                 )),
@@ -588,9 +558,9 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                             ),
                           ),
                         ),
-                        key: ValueKey(10),
+                        key: ValueKey(11),
                         onChanged: (value) {
-                          formData.intro = value;
+                          formData.info = value;
                         },
                       ),
                     ),

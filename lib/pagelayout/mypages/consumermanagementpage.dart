@@ -128,11 +128,6 @@ class ConsumerManagementPage extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Icon(
-                                Icons.bookmark_outlined,
-                                size: 35,
-                                color: Colors.pink,
-                              ),
                             ],
                           ),
                         ),
