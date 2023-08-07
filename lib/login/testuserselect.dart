@@ -19,11 +19,23 @@ class _TestUserSelectState extends State<TestUserSelect> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          '회원가입',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 100,
+            ),
             ListTile(
               title: const Text('전공자'),
               leading: Radio<Usertype>(
@@ -53,7 +65,7 @@ class _TestUserSelectState extends State<TestUserSelect> {
             SizedBox(
               height: 40,
             ),
-            Text('선택 : $_usertype'),
+            // Text('선택 : $_usertype'),
           ],
         ),
       ),
