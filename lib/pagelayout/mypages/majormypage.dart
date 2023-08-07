@@ -62,14 +62,14 @@ class _MajorMypageState extends State<MajorMypage> {
                         width: 15,
                       ),
                       const Text(
-                        '000님!  반가워요!',
+                        '전홍식님!  반가워요!',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(
-                        width: 75,
+                        width: 55,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,

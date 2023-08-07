@@ -128,7 +128,7 @@ class ConsumerMainBody extends StatelessWidget {
     //listView 메소드
     return ListView.separated(
       scrollDirection: Axis.horizontal,
-      itemCount: 5,
+      itemCount: 4,
       itemBuilder: (context, index) {
         var resume = snapshot.data![index];
 
@@ -195,7 +195,7 @@ class ConsumerMainBody extends StatelessWidget {
                                     width: 5,
                                   ),
                                   Text(
-                                    resume.author,
+                                    resume.name,
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

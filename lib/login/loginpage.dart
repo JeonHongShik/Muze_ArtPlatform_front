@@ -58,13 +58,13 @@ class _loginState extends State<Loginpage> {
                   child: Image.asset("assets/images/kakao_login.png",
                       fit: BoxFit.cover),
                 ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await Logout();
-                    setState(() {});
-                  },
-                  child: Text('Logout'),
-                ),
+                // ElevatedButton(
+                //   onPressed: () async {
+                //     await Logout();
+                //     setState(() {});
+                //   },
+                //   child: Text('Logout'),
+                // ),
               ],
             ),
           ),

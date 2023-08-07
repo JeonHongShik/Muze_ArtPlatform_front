@@ -58,7 +58,7 @@ class Majorpostpage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            resume.author, //이름
+                                            resume.name, //이름
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),
@@ -146,7 +146,7 @@ class Majorpostpage extends StatelessWidget {
                               ),
                               Longpostbar(
                                 title: '사진',
-                                data: resume.id.toString(),
+                                data: resume.profile,
                               ),
                               const SizedBox(
                                 height: 100,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 class ConsumerModel {
   final String author,
+      name,
       agency,
       title,
       info,
@@ -18,6 +19,7 @@ class ConsumerModel {
   ConsumerModel.fromjson(Map<String, dynamic> json)
       : id = json['id'],
         author = json['author'],
+        name = json['name'],
         agency = json['agency'],
         call = json['call'],
         title = json['title'],
@@ -32,6 +34,7 @@ class ConsumerModel {
 
 class ConsumerFormData {
   String? author,
+      name,
       agency,
       title,
       info,
@@ -48,6 +51,7 @@ class ConsumerFormData {
   ConsumerFormData(
       {this.id,
       this.author,
+      this.name,
       this.agency,
       this.title,
       this.info,
@@ -62,6 +66,7 @@ class ConsumerFormData {
 
   Map<String, dynamic> toJson() => {
         'author': author,
+        'name': name,
         'id': id,
         'title': title,
         'info': info,

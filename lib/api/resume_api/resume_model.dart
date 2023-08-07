@@ -2,6 +2,7 @@ import 'dart:io';
 
 class ResumeModel {
   final String author,
+      name,
       education,
       award,
       career,
@@ -13,6 +14,7 @@ class ResumeModel {
   ResumeModel.fromjson(Map<String, dynamic> json)
       : id = json['id'],
         author = json['author'],
+        name = json['name'],
         age = json['age'],
         education = json['education'],
         award = json['award'],
@@ -24,6 +26,7 @@ class ResumeModel {
 
 class ResumeFormData {
   String? author,
+      name,
       education,
       award,
       career,
@@ -34,6 +37,7 @@ class ResumeFormData {
 
   ResumeFormData({
     this.author,
+    this.name,
     this.education,
     this.award,
     this.career,
@@ -46,6 +50,7 @@ class ResumeFormData {
 
   Map<String, dynamic> toJson() => {
         'author': author,
+        'name': name,
         'education': education,
         'award': award,
         'career': career,

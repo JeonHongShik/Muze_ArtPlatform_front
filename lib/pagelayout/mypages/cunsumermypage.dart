@@ -62,14 +62,14 @@ class _CunsumerMypagestate extends State<CunsumerMypage> {
                         width: 10,
                       ),
                       const Text(
-                        '000님!  반가워요!',
+                        '조은성님!  반가워요!',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(
-                        width: 80,
+                        width: 60,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,

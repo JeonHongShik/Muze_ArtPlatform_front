@@ -58,7 +58,7 @@ class Consumerpostpage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            consumer.author,
+                                            consumer.name,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),
@@ -123,19 +123,16 @@ class Consumerpostpage extends StatelessWidget {
                                 height: 50,
                               ),
                               Longpostbar(
-                                title: '사진',
-                                data: consumer.agency,
-                              ),
-                              SizedBox(
-                                height: 100,
-                              ),
-                              Longpostbar(
                                 title: '공연소개',
                                 data: consumer.info,
                               ),
                               SizedBox(
                                 height: 100,
-                              )
+                              ),
+                              Longpostbar(
+                                title: '사진',
+                                data: consumer.agency,
+                              ),
                             ],
                           )
                         ],

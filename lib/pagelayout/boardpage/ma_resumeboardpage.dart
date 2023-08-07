@@ -168,7 +168,7 @@ class MaResumeBoardPage extends StatelessWidget {
                                     width: 5,
                                   ),
                                   Text(
-                                    resume.author,
+                                    resume.name,
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

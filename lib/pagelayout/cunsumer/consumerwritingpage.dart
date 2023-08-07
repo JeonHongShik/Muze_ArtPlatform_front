@@ -86,7 +86,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                label: Text('admin'),
+                                label: Text('이름'),
                               ),
                               key: ValueKey(1),
                               onChanged: (value) {

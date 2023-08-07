@@ -1,77 +1,79 @@
+import 'package:artplatform/api/consumer_api/consumer_apidata.dart';
+import 'package:artplatform/api/consumer_api/consumer_model.dart';
 import 'package:artplatform/api/resume_api/resume_apidata.dart';
 import 'package:artplatform/api/resume_api/resume_model.dart';
+import 'package:artplatform/pagelayout/cunsumer/consumerpostpage.dart';
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
 
 class ConsumerManagementPage extends StatelessWidget {
   ConsumerManagementPage({super.key});
 
-  final Future<List<ResumeModel>> resumes = ResumeApiData.getResume();
+  final Future<List<ConsumerModel>> consumers = ConsumerApiData.getConsumer();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          iconTheme: IconThemeData(color: Colors.black),
-          centerTitle: true,
-          title: Text(
-            '게시글 관리',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        title: Text(
+          '게시글 관리',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Column(children: [
-          FutureBuilder(
-            future: resumes,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    SizedBox(
-                        height: 725, child: resumesList(snapshot)), //리스트뷰 화면 크기
-                  ],
-                );
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
-        ]),
       ),
+      body: Column(children: [
+        FutureBuilder(
+          future: consumers,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: [
+                  SizedBox(
+                      height: 725, child: consumersList(snapshot)), //리스트뷰 화면 크기
+                ],
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
+      ]),
     );
   }
 
-  ListView resumesList(AsyncSnapshot<List<ResumeModel>> snapshot) {
+  ListView consumersList(AsyncSnapshot<List<ConsumerModel>> snapshot) {
     //listView 메소드
+
+    List<ConsumerModel> reversedList = snapshot.data!.reversed.toList();
 
     return ListView.separated(
       scrollDirection: Axis.vertical,
       itemCount: 1,
       itemBuilder: (context, index) {
-        var resume = snapshot.data![index];
-
+        var consumer = reversedList[index];
         return GestureDetector(
           onTap: () {
             // 게시물 목록에서 게시물 클릭 시 게시물 세부 페이지로 넘어가게 하기 위한 곳
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Majorpostpage(),
+                builder: (context) => Consumerpostpage(),
                 settings: RouteSettings(
-                  arguments: resume,
+                  arguments: consumer,
                 ),
               ),
             );
           },
           child: Container(
             //이 컨테이너는 둥근 박스 뒷쪽 박스
-            height: 230, //세로 스크롤이기 때문에 둥근 박스의 뒷쪽 박스 조절 됨
+            height: 230,
             width: 400, //여기서는 가로 조절만 됨, 세로 조절은 위에서 됨.
             color: Colors.white,
             child: Column(
@@ -100,32 +102,49 @@ class ConsumerManagementPage extends StatelessWidget {
                         ]),
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           color: Colors.white,
                           width: 330,
-                          child: Row(
-                            //유저 프로필, 이름, 북마크
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          height: 40,
+                          child: Column(
+                            //유저,북마크와 제목
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                //유저 프로필, 이름 붙이기 위한 Row
+                                //유저 프로필, 이름, 북마크
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(
-                                    Icons.account_circle,
-                                    size: 50,
-                                    color: Colors.red.shade200,
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        consumer.title,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
+                                  // Icon(
+                                  //   Icons.bookmark_border,
+                                  //   size: 30,
+                                  // ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: const [
                                   SizedBox(
-                                    //아이콘과 이름 사이 여백
                                     width: 5,
                                   ),
-                                  Text(
-                                    resume.author,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
                                 ],
                               ),
                             ],
@@ -148,7 +167,7 @@ class ConsumerManagementPage extends StatelessWidget {
                         Container(
                           color: Colors.white,
                           width: 300,
-                          height: 100,
+                          height: 80,
                           child: Column(
                             children: [
                               Row(
@@ -159,17 +178,17 @@ class ConsumerManagementPage extends StatelessWidget {
                                     children: [
                                       Icon(Icons.person),
                                       Text(
-                                        "${resume.age}세",
+                                        consumer.type,
                                         style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          color: Colors.black,
                                         ),
                                       )
                                     ],
                                   ),
                                   SizedBox(
                                     //나이와 성별 사이 여백
-                                    width: 90,
+                                    width: 35,
                                   ),
                                   Row(
                                     //아이콘+성별 넣기 위한 Row
@@ -179,9 +198,26 @@ class ConsumerManagementPage extends StatelessWidget {
                                       Text(
                                         "남성",
                                         style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          color: Colors.black,
                                         ),
+                                      ),
+                                      SizedBox(
+                                        //나이와 성별 사이 여백
+                                        width: 35,
+                                      ),
+                                      Row(
+                                        //아이콘+학력 넣기 위한 Row
+                                        children: [
+                                          Icon(Icons.attach_money),
+                                          Text(
+                                            "20만원",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ],
                                   )
@@ -194,16 +230,16 @@ class ConsumerManagementPage extends StatelessWidget {
                               Row(
                                 //아이콘+학력 넣기 위한 Row
                                 children: [
-                                  Icon(Icons.school),
+                                  Icon(Icons.location_on),
                                   Text(
-                                    resume.education,
+                                    consumer.location,
                                     style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black,
                                     ),
                                   )
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         )
