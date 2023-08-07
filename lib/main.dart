@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:artplatform/login/loginpage.dart';
-import 'package:artplatform/login/testuserselect.dart';
-import 'package:artplatform/pagelayout/cunsumer/cunsumermain.dart';
-import 'package:artplatform/pagelayout/major/majormainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
@@ -16,7 +13,8 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   KakaoSdk.init(nativeAppKey: '62aa2f65099eaaf2f9f5ea6c5ca60a36');
   runApp(const MyApp());
 }

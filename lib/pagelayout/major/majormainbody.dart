@@ -53,16 +53,18 @@ class MajorMainBody extends StatelessWidget {
             future: consumers,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  // 공고 게시물 표시
-                  children: [
-                    SizedBox(
-                      height: 225, // 둥근 박스의 뒷쪽 박스
-                      width: 400,
-                      child: consumersList(snapshot),
-                    ),
-                  ],
-                );
+                return (snapshot.data!.isNotEmpty)
+                    ? Column(
+                        // 공고 게시물 표시
+                        children: [
+                          SizedBox(
+                            height: 225, // 둥근 박스의 뒷쪽 박스
+                            width: 400,
+                            child: consumersList(snapshot),
+                          ),
+                        ],
+                      )
+                    : Text(('no data 상규'));
               }
               return Center(
                 //공고 게시물 값이 없을 때 표시
@@ -123,16 +125,18 @@ class MajorMainBody extends StatelessWidget {
             future: resumes,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  //이력서 게시물 표시
-                  children: [
-                    SizedBox(
-                      height: 230, // 둥근 박스의 뒷쪽 박스
-                      width: 400,
-                      child: resumesList(snapshot),
-                    ),
-                  ],
-                );
+                return (snapshot.data!.isNotEmpty)
+                    ? Column(
+                        //이력서 게시물 표시
+                        children: [
+                          SizedBox(
+                            height: 230, // 둥근 박스의 뒷쪽 박스
+                            width: 400,
+                            child: resumesList(snapshot),
+                          ),
+                        ],
+                      )
+                    : Text('no data 상규');
               }
               return Center(
                 //이력서 게시물 값이 없을 때 표시
