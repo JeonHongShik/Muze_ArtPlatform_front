@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:artplatform/login/loginpage.dart';
+import 'package:artplatform/login/status.dart';
+import 'package:artplatform/login/testuserselect.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -15,22 +18,20 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoSdk.init(nativeAppKey: '62aa2f65099eaaf2f9f5ea6c5ca60a36');
+  KakaoSdk.init(
+      nativeAppKey: '62aa2f65099eaaf2f9f5ea6c5ca60a36',
+      javaScriptAppKey: 'ba7d37a30b8d2b926672d933e4b45e39');
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TestUserSelect(),
+      home: Status(),
     );
   }
 }

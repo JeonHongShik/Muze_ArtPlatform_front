@@ -1,31 +1,35 @@
 import 'package:artplatform/api/kakao_api/kakaoformdata.dart';
+import 'package:artplatform/api/user_api/user_apidata.dart';
 import 'package:artplatform/login/testuserselect.dart';
 import 'package:artplatform/widgets/login/kakaologin.dart';
 import 'package:artplatform/widgets/login/logoutbutton.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+class Loginpage extends StatelessWidget {
+  Loginpage({super.key});
+  final storage = FlutterSecureStorage();
 
-  @override
-  State<Loginpage> createState() => _loginState();
-}
+  // final formKey = GlobalKey<FormState>();
 
-class _loginState extends State<Loginpage> {
-  final kakaologin = Kakao_Login();
-  final formKey = GlobalKey<FormState>();
-  KakaoFormData formData = KakaoFormData();
+  // KakaoFormData formData = KakaoFormData();
 
-  @override
-  void initState() {
-    super.initState();
+  Future<void> btnTap() async {
+    print('start');
+    final String token = await getKakaoToken();
+    print(token);
+    final res = await UserApiData.kakaoLogin(token);
+    res.id;
+    print(res.id);
+    storage.write(key: 'id', value: res.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Container(
+    return Scaffold(
+      body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
@@ -45,18 +49,8 @@ class _loginState extends State<Loginpage> {
                       fixedSize: const Size(183, 45),
                       backgroundColor: Colors.transparent,
                       elevation: 0.0),
-                  onPressed: () async {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return TestUserSelect();
-                    }));
-                    // final String token = await kakaologin.login();
-                    // print(token);
-                    // final response = await http.post(
-                    //   Uri.parse('http://10.0.0.2:8000/account/user/'),
-                    //   body: {"accessToken": token},
-                    // );
-                    // print("statuscode : ${response.statusCode}");
+                  onPressed: () {
+                    btnTap();
                   },
                   child: Image.asset("assets/images/kakao_login.png",
                       fit: BoxFit.cover),

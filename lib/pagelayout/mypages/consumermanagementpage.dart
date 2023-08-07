@@ -32,12 +32,15 @@ class ConsumerManagementPage extends StatelessWidget {
           future: consumers,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
-                children: [
-                  SizedBox(
-                      height: 725, child: consumersList(snapshot)), //리스트뷰 화면 크기
-                ],
-              );
+              return (snapshot.data!.isNotEmpty)
+                  ? Column(
+                      children: [
+                        SizedBox(
+                            height: 725,
+                            child: consumersList(snapshot)), //리스트뷰 화면 크기
+                      ],
+                    )
+                  : Text('no data 상규');
             }
             return Center(
               child: CircularProgressIndicator(),

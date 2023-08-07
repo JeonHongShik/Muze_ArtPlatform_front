@@ -49,6 +49,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_material_pickers: ^3.6.0
+  flutter_secure_storage: ^8.0.0
   http: ^1.1.0
   image_picker: ^1.0.1
   intl: any
