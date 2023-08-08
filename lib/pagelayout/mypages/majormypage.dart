@@ -1,5 +1,7 @@
 import 'package:artplatform/pagelayout/major/majorwritingpage.dart';
+import 'package:artplatform/providers/currentUser.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MajorMypage extends StatefulWidget {
   const MajorMypage({super.key});
@@ -9,8 +11,11 @@ class MajorMypage extends StatefulWidget {
 }
 
 class _MajorMypageState extends State<MajorMypage> {
+  late CurrentUserProvider _currentUserProvider;
   @override
   Widget build(BuildContext context) {
+    _currentUserProvider =
+        Provider.of<CurrentUserProvider>(context, listen: true);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -61,8 +66,8 @@ class _MajorMypageState extends State<MajorMypage> {
                       const SizedBox(
                         width: 15,
                       ),
-                      const Text(
-                        '전홍식님!  반가워요!',
+                      Text(
+                        '${_currentUserProvider.user!.name}님 반가워요',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,

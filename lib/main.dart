@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:artplatform/login/loginpage.dart';
 import 'package:artplatform/login/status.dart';
 import 'package:artplatform/login/testuserselect.dart';
-import 'package:artplatform/pagelayout/major/majormainpage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:provider/provider.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MajorMainPage(),
+      home: Status(),
     );
   }
 }

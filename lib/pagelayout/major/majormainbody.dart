@@ -8,16 +8,21 @@ import 'package:artplatform/api/resume_api/resume_apidata.dart';
 import 'package:artplatform/api/resume_api/resume_model.dart';
 import 'package:artplatform/pagelayout/cunsumer/consumerpostpage.dart';
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
+import 'package:artplatform/providers/currentUser.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MajorMainBody extends StatelessWidget {
   MajorMainBody({super.key});
+  late CurrentUserProvider _currentUserProvider;
 
   final Future<List<ResumeModel>> resumes = ResumeApiData.getResume();
   final Future<List<ConsumerModel>> consumers = ConsumerApiData.getConsumer();
 
   @override
   Widget build(BuildContext context) {
+    _currentUserProvider =
+        Provider.of<CurrentUserProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
