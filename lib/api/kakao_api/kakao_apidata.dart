@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class KakaoApiData {
   static const String baseUrl = "http://10.0.2.2:8000";
-  static const String kakao = "account/usermodel/?format=json";
+  static const String kakao = "account/user";
 
   static Future<List<KakaoModel>> getKakao() async {
     List<KakaoModel> kakaoInstances = [];

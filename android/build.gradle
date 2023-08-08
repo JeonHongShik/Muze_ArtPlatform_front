@@ -8,12 +8,16 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // implementation "com.kakao.sdk:v2-user:2.7.0" //해시 키 받기 위함
     }
 }
 
 allprojects {
     repositories {
         google()
+        // jcenter()
+
+        // maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
         mavenCentral()
     }
 }

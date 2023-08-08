@@ -1,6 +1,6 @@
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
-Future Logout() async {
+Future logout() async {
   try {
     await UserApi.instance.logout();
     print('로그아웃 성공, SDK에서 토큰 삭제');

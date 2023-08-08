@@ -14,6 +14,9 @@ class Status extends StatefulWidget {
 class _StatusState extends State<Status> {
   final storage = FlutterSecureStorage();
   String? id;
+  String? name;
+  String? profile;
+  String? type;
 
   @override
   void initState() {
@@ -24,6 +27,9 @@ class _StatusState extends State<Status> {
 
   Future<void> getId() async {
     id = await storage.read(key: 'id');
+    name = await storage.read(key: 'name');
+    profile = await storage.read(key: 'profile');
+    type = await storage.read(key:'type');
   }
 
   @override

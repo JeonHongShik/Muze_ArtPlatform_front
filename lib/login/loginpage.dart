@@ -22,7 +22,13 @@ class Loginpage extends StatelessWidget {
     print(token);
     final res = await UserApiData.kakaoLogin(token);
     res.id;
+    res.name;
+    res.profile;
+    res.type;
     print(res.id);
+    print(res.name);
+    print(res.profile);
+    print(res.type);
     storage.write(key: 'id', value: res.id);
   }
 

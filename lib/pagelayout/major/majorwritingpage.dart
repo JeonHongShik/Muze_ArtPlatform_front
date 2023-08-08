@@ -1,4 +1,7 @@
 //사진 POST 기능 넣어야 함.
+// 82줄 유저 이름 들어가야 함
+// 게시물 성별 들어가야 함
+// 프로필 사진 받아오게 코드 수정
 
 import 'dart:convert';
 
@@ -80,10 +83,10 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
                                   ),
                                 ),
                               ),
-                              key: ValueKey(1),
-                              onChanged: (value) {
-                                formData.author = value;
-                              },
+                              // key: ValueKey(1),
+                              // onChanged: (value) {
+                              //   formData.author = value;
+                              // },
                             ),
                           ),
                         ],
@@ -125,7 +128,7 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
                             ),
                             key: ValueKey(1),
                             onChanged: (value) {
-                              formData.age = int.tryParse(value);
+                              formData.age = value;
                             },
                           ),
                         ),
@@ -357,7 +360,7 @@ class _MajorwritingpageState extends State<Majorwritingpage> {
         backgroundColor: const Color.fromARGB(255, 255, 84, 84),
         onPressed: () async {
           var result = await http.post(
-              Uri.parse('http://10.0.2.2:8000/consumer/?format=json'),
+              Uri.parse('http://ec2-3-39-25-227.ap-northeast-2.compute.amazonaws.com/resume/'),
               body: json.encode(formData.toJson()),
               headers: {'content-type': 'application/json'});
           try {

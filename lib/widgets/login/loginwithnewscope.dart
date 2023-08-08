@@ -16,7 +16,7 @@ Future loginWithNewScopes() async {
     scopes.add('account_email');
   }
 
-  if (scopes.length > 0) {
+  if (scopes.isNotEmpty) {
     print('사용자에게 추가 동의 받아야 하는 항목이 있습니다');
 
     // OpenID Connect 사용 시

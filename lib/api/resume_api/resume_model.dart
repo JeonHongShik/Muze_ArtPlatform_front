@@ -1,63 +1,45 @@
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 class ResumeModel {
-  final String author,
-      name,
-      education,
-      award,
-      career,
-      introduce,
-      call,
-      profile; //profile은 File 형식
-  final int id, age;
+  final int age, call;
+  final String  education, career, award, introduce;
+  final File profile;
 
   ResumeModel.fromjson(Map<String, dynamic> json)
-      : id = json['id'],
-        author = json['author'],
-        name = json['name'],
+      : 
+        call = json['call'],
         age = json['age'],
         education = json['education'],
-        award = json['award'],
         career = json['career'],
+        award = json['award'],
         introduce = json['introduce'],
-        call = json['call'],
         profile = json['profile'];
 }
 
 class ResumeFormData {
-  String? author,
-      name,
-      education,
-      award,
-      career,
-      introduce,
-      call,
-      profile; //profile은 File 형식
-  int? id, age;
+  String? call, age, education, career, award, introduce;
+  File? profile;
 
   ResumeFormData({
-    this.author,
-    this.name,
-    this.education,
-    this.award,
-    this.career,
-    this.introduce,
+ 
+   this.call,
     this.age,
-    this.id,
-    this.call,
+    this.education,
+    this.career,
+    this.award,
+    this.introduce,
     this.profile,
   });
 
   Map<String, dynamic> toJson() => {
-        'author': author,
-        'name': name,
-        'education': education,
-        'award': award,
-        'career': career,
-        'introduce': introduce,
         'call': call,
         'age': age,
-        'id': id,
+        'education': education,
+        'career': career,
+        'award': award,
+        'introduce': introduce,
         'profile': profile,
       };
 }

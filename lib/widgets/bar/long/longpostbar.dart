@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class Longpostbar extends StatelessWidget {
@@ -32,7 +34,7 @@ class Longpostbar extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    data.toString(),
+                    data,
                     style: TextStyle(fontSize: 16),
                   )
                 ],

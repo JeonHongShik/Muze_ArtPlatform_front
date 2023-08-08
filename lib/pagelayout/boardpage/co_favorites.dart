@@ -1,3 +1,7 @@
+//유저가 쓴 게시물 표시 해야 함
+//유저 이름 수정해야함 131줄
+//게시물 성별 들어가야 함 191줄
+
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
 import 'package:artplatform/api/resume_api/resume_apidata.dart';
@@ -126,7 +130,7 @@ class CoFavoritesPage extends StatelessWidget {
                                     width: 5,
                                   ),
                                   Text(
-                                    resume.name,
+                                    "이름", //유저 이름 들어가는 칸
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

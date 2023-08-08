@@ -1,6 +1,10 @@
 //모집기한, 공연일시 textformfield가 없음
+// 92줄 유저 이름 들어가야 함
+// 게시물 성별 들어가야 함
+// 프로필 사진 받아오게 코드 수정
 
 import 'dart:convert';
+import 'package:artplatform/widgets/imageuploader/imageupload.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:http/http.dart' as http;
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
@@ -21,7 +25,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
   final formKey = GlobalKey<FormState>();
   ConsumerFormData formData = ConsumerFormData();
 
-  List<XFile> userImages = [];
+  var userImage;
 
   @override
   void initState() {
@@ -88,10 +92,10 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                                 ),
                                 label: Text('이름'),
                               ),
-                              key: ValueKey(1),
-                              onChanged: (value) {
-                                formData.author = value;
-                              },
+                              // key: ValueKey(1),   //유저 이름 들어갸야 함
+                              // onChanged: (value) {
+                              //   formData.author = value;
+                              // }, 
                             ),
                           ),
                         ],
@@ -495,11 +499,15 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                             icon: Icon(Icons.add_box_outlined),
                             onPressed: () async {
                               var picker = ImagePicker();
-                              List<XFile> images =
-                                  await picker.pickMultiImage();
+                              var image = await picker.pickImage(source: ImageSource.gallery);
+                              if (image != null) {
+                                setState(() {
+                                  userImage = File(image.path);
+                                });
+                              }
 
                               setState(() {
-                                userImages = images;
+                                userImage = images;
                               });
                             },
                           ),
@@ -509,22 +517,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                     SizedBox(
                       height: 100,
                       width: 400,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: userImages.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 4, vertical: 8),
-                            child: Image.file(
-                              File(userImages[index].path),
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
-                          );
-                        },
-                      ),
+                      child: Image.file(userImage),
                     ),
                   ],
                 )),
@@ -575,7 +568,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
         backgroundColor: const Color.fromARGB(255, 255, 84, 84),
         onPressed: () async {
           var result = await http.post(
-              Uri.parse('http://10.0.2.2:8000/post/?format=json'),
+              Uri.parse('http://ec2-3-39-25-227.ap-northeast-2.compute.amazonaws.com/post/'),
               body: json.encode(formData.toJson()),
               headers: {'content-type': 'application/json'});
           try {

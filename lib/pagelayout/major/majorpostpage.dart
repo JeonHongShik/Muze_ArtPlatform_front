@@ -1,3 +1,7 @@
+// 61줄 유저 이름 들어가야 함
+// 게시물 성별 들어가야 함
+// 프로필 사진 받아오게 코드 수정
+
 import 'package:artplatform/api/resume_api/resume_model.dart';
 import 'package:artplatform/widgets/bar/long/longpostbar.dart';
 import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
@@ -40,7 +44,7 @@ class Majorpostpage extends StatelessWidget {
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: const [
                                 Row(
                                   children: <Widget>[
                                     SizedBox(
@@ -58,7 +62,7 @@ class Majorpostpage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            resume.name, //이름
+                                            "이름", //이름
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),
@@ -146,7 +150,7 @@ class Majorpostpage extends StatelessWidget {
                               ),
                               Longpostbar(
                                 title: '사진',
-                                data: resume.profile,
+                                data: "수정해야 함",
                               ),
                               const SizedBox(
                                 height: 100,

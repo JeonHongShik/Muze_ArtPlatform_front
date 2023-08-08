@@ -1,3 +1,7 @@
+// 61줄 유저 이름 들어가야 함
+// 게시물 성별 들어가야 함
+// 프로필 사진 받아오게 코드 수정
+
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
 import 'package:artplatform/widgets/bar/long/longpostbar.dart';
 import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
@@ -40,7 +44,7 @@ class Consumerpostpage extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: const [
                                 Row(
                                   children: <Widget>[
                                     SizedBox(
@@ -58,7 +62,7 @@ class Consumerpostpage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            consumer.name,
+                                            "이름", //유저 이름 들어갸야 함
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),

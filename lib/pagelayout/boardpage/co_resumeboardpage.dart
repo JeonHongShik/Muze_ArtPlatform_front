@@ -1,3 +1,7 @@
+// 171줄 유저 이름 들어가야 함
+// 게시물 성별 들어가야 함
+// 프로필 사진 받아오게 코드 수정
+
 import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
 import 'package:artplatform/api/resume_api/resume_apidata.dart';
@@ -168,7 +172,7 @@ class CoResumeBoardPage extends StatelessWidget {
                                     width: 5,
                                   ),
                                   Text(
-                                    resume.name,
+                                    "이름", //유저 이름 들어가야 함
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

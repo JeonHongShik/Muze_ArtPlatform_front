@@ -1,83 +1,59 @@
 import 'dart:io';
 
 class ConsumerModel {
-  final String author,
-      name,
-      agency,
-      title,
-      info,
-      type,
-      deadline,
-      date,
-      location,
-      profile,
-      call;
-  // pay;
-  final int id;
-  // final File profile;
+  final String agency, title, call, pay, info, type, deadline, date, location; //성별 추가해야 함
+  final File profile;
 
   ConsumerModel.fromjson(Map<String, dynamic> json)
-      : id = json['id'],
-        author = json['author'],
-        name = json['name'],
-        agency = json['agency'],
-        call = json['call'],
+      : agency = json['agency'],
         title = json['title'],
+        call = json['call'],
+        pay = json['pay'],
         info = json['info'],
         type = json['type'],
         deadline = json['deadline'],
         date = json['date'],
         location = json['location'],
         profile = json['profile'];
-  // pay = json['pay'];
 }
 
 class ConsumerFormData {
-  String? author,
-      name,
+  String? 
       agency,
       title,
+      call,
+      pay,
       info,
       type,
       deadline,
       date,
-      location,
-      intro,
-      call;
-  // pay,
-  int? id;
+      location;
+
   File? profile;
 
   ConsumerFormData(
-      {this.id,
-      this.author,
-      this.name,
+      {
       this.agency,
       this.title,
+      this.call,
+      this.pay,
       this.info,
       this.type,
       this.deadline,
       this.date,
       this.location,
-      this.intro,
-      this.call,
-      // this.pay,
       this.profile});
 
   Map<String, dynamic> toJson() => {
-        'author': author,
-        'name': name,
-        'id': id,
+        'agency': agency,
         'title': title,
+        'call': call,
+        'pay': pay,
         'info': info,
         'type': type,
         'deadline': deadline,
         'date': date,
         'location': location,
-        'intro': intro,
-        'call': call,
-        // 'pay': pay,
         'profile': profile,
-        'agency': agency,
       };
 }
