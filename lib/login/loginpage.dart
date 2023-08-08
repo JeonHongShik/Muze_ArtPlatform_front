@@ -1,16 +1,15 @@
-import 'package:artplatform/api/kakao_api/kakaoformdata.dart';
 import 'package:artplatform/api/user_api/user_apidata.dart';
-import 'package:artplatform/login/testuserselect.dart';
+import 'package:artplatform/providers/currentUser.dart';
 import 'package:artplatform/widgets/login/kakaologin.dart';
-import 'package:artplatform/widgets/login/logoutbutton.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:provider/provider.dart';
 
 class Loginpage extends StatelessWidget {
   Loginpage({super.key});
   final storage = FlutterSecureStorage();
+  late CurrentUserProvider _currentUserProvider;
 
   // final formKey = GlobalKey<FormState>();
 
@@ -22,12 +21,15 @@ class Loginpage extends StatelessWidget {
     print(token);
     final res = await UserApiData.kakaoLogin(token);
     res.id;
-    print(res.id);
+    _currentUserProvider.getUser(res.id);
     storage.write(key: 'id', value: res.id);
+    _currentUserProvider.setLogin('logged');
   }
 
   @override
   Widget build(BuildContext context) {
+    _currentUserProvider =
+        Provider.of<CurrentUserProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -49,8 +51,8 @@ class Loginpage extends StatelessWidget {
                       fixedSize: const Size(183, 45),
                       backgroundColor: Colors.transparent,
                       elevation: 0.0),
-                  onPressed: () {
-                    btnTap();
+                  onPressed: () async {
+                    await btnTap();
                   },
                   child: Image.asset("assets/images/kakao_login.png",
                       fit: BoxFit.cover),
