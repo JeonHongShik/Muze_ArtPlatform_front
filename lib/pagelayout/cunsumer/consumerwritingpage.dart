@@ -561,6 +561,7 @@ class _ConsumerwritingpageState extends State<Consumerwritingpage> {
                         key: ValueKey(11),
                         onChanged: (value) {
                           formData.info = value;
+                          print(value);
                         },
                       ),
                     ),

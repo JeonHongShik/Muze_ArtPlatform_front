@@ -1,15 +1,16 @@
 import 'package:artplatform/api/consumer_api/consumer_apidata.dart';
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
-import 'package:artplatform/api/resume_api/resume_apidata.dart';
-import 'package:artplatform/api/resume_api/resume_model.dart';
 import 'package:artplatform/pagelayout/cunsumer/consumerpostpage.dart';
-import 'package:artplatform/pagelayout/major/majorpostpage.dart';
 import 'package:flutter/material.dart';
+
+import '../../providers/currentUser.dart';
 
 class ConsumerManagementPage extends StatelessWidget {
   ConsumerManagementPage({super.key});
-
+  late CurrentUserProvider _currentUserProvider;
   final Future<List<ConsumerModel>> consumers = ConsumerApiData.getConsumer();
+  // final Future<List<ConsumerModel>> mylist = ConsumerApiData.getConsumer(_currentUserProvider.user!.id);
+  ////본인 데이터 불러오는 함수로 바꿔줘야 함
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,7 @@ class ConsumerManagementPage extends StatelessWidget {
 
   ListView consumersList(AsyncSnapshot<List<ConsumerModel>> snapshot) {
     //listView 메소드
-
     List<ConsumerModel> reversedList = snapshot.data!.reversed.toList();
-
     return ListView.separated(
       scrollDirection: Axis.vertical,
       itemCount: 1,
