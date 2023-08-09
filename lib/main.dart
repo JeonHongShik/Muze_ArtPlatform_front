@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:artplatform/login/status.dart';
 import 'package:artplatform/login/testuserselect.dart';
+import 'package:artplatform/providers/currentUser.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Status(),
-    );
+    return ChangeNotifierProvider(create: (context) => CurrentUserProvider(), child: MaterialApp(home: Status()),);
   }
 }
+
+// MaterialApp(
+//      home: Status(),

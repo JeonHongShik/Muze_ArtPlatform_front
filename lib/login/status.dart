@@ -15,6 +15,7 @@ class Status extends StatefulWidget {
 class _StatusState extends State<Status> {
   final storage = FlutterSecureStorage();
   String? id;
+  CurrentUserProvider? _currentUserProvider;
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _StatusState extends State<Status> {
   Widget build(BuildContext context) {
     _currentUserProvider =
         Provider.of<CurrentUserProvider>(context, listen: true);
-    switch (_currentUserProvider.logged) {
+    switch (_currentUserProvider?.logged) {
       case "":
         return Loginpage();
 
@@ -43,3 +44,5 @@ class _StatusState extends State<Status> {
     }
   }
 }
+
+
