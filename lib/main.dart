@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:artplatform/login/status.dart';
-import 'package:artplatform/login/testuserselect.dart';
 import 'package:artplatform/providers/currentUser.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
+
+import 'login/status.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -22,7 +22,7 @@ void main() async {
       nativeAppKey: '62aa2f65099eaaf2f9f5ea6c5ca60a36',
       javaScriptAppKey: 'ba7d37a30b8d2b926672d933e4b45e39');
 
-      // print(await KakaoSdk.origin); 해시 키 추출
+  // print(await KakaoSdk.origin); 해시 키 추출
 
   runApp(const MyApp());
 }
@@ -32,7 +32,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (context) => CurrentUserProvider(), child: MaterialApp(home: Status()),);
+    return ChangeNotifierProvider(
+      create: (context) => CurrentUserProvider(),
+      child: MaterialApp(home: Status()),
+    );
   }
 }
 

@@ -5,7 +5,8 @@ import 'package:artplatform/api/kakao_api/kakaoformdata.dart';
 import 'package:http/http.dart' as http;
 
 class KakaoApiData {
-  static const String baseUrl = "http://10.0.2.2:8000";
+  static const String baseUrl =
+      "http://ec2-3-39-25-227.ap-northeast-2.compute.amazonaws.com/";
   static const String kakao = "account/usermodel/?format=json";
 
   static Future<List<KakaoModel>> getKakao() async {

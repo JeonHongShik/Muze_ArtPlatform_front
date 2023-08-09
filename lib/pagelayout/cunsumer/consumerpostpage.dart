@@ -5,6 +5,7 @@
 import 'package:artplatform/api/consumer_api/consumer_model.dart';
 import 'package:artplatform/widgets/bar/long/longpostbar.dart';
 import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
+import 'package:artplatform/widgets/imageuploader/imageview.dart';
 import 'package:flutter/material.dart';
 
 class Consumerpostpage extends StatelessWidget {
@@ -14,6 +15,7 @@ class Consumerpostpage extends StatelessWidget {
   Widget build(BuildContext context) {
     final consumer =
         ModalRoute.of(context)!.settings.arguments as ConsumerModel;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -95,18 +97,18 @@ class Consumerpostpage extends StatelessWidget {
                               Shortpostbar(
                                 title_1: '기관명',
                                 data1: consumer.agency,
-                                title_2: '무대정보',
-                                data2: 'text',
-                              ), //기관명, 무대정보
+                                title_2: '공연종류',
+                                data2: consumer.type,
+                              ), //기관명, 공연종류
                               SizedBox(
                                 height: 50,
                               ),
                               Shortpostbar(
-                                title_1: '공연종류',
-                                data1: consumer.type,
+                                title_1: '성별',
+                                data1: consumer.gender,
                                 title_2: '페이',
-                                data2: '200000원',
-                              ), // 공연종류, 페이
+                                data2: consumer.pay.toString(),
+                              ), // 성별, 페이
                               SizedBox(
                                 height: 50,
                               ),
@@ -133,10 +135,7 @@ class Consumerpostpage extends StatelessWidget {
                               SizedBox(
                                 height: 100,
                               ),
-                              Longpostbar(
-                                title: '사진',
-                                data: consumer.agency,
-                              ),
+                              Imageview(url: consumer.profile),
                             ],
                           )
                         ],

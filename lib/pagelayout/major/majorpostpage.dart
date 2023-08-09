@@ -8,6 +8,8 @@ import 'package:artplatform/widgets/bar/short/shortpostbar.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../widgets/imageuploader/imageview.dart';
+
 class Majorpostpage extends StatelessWidget {
   const Majorpostpage({super.key});
 
@@ -148,12 +150,8 @@ class Majorpostpage extends StatelessWidget {
                                 width: 360,
                                 color: const Color.fromARGB(255, 202, 202, 202),
                               ),
-                              Longpostbar(
-                                title: '사진',
-                                data: "수정해야 함",
-                              ),
-                              const SizedBox(
-                                height: 100,
+                              Imageview(
+                                url: resume.profile,
                               ),
                               Container(
                                 // 구분선

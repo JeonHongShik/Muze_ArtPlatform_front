@@ -1,8 +1,15 @@
-import 'dart:io';
-
 class ConsumerModel {
-  final String agency, title, call, pay, info, type, deadline, date, location; //성별 추가해야 함
-  final File profile;
+  final String agency,
+      title,
+      call,
+      pay,
+      info,
+      type,
+      deadline,
+      date,
+      location,
+      profile,
+      gender;
 
   ConsumerModel.fromjson(Map<String, dynamic> json)
       : agency = json['agency'],
@@ -14,12 +21,12 @@ class ConsumerModel {
         deadline = json['deadline'],
         date = json['date'],
         location = json['location'],
-        profile = json['profile'];
+        profile = json['profile'],
+        gender = json['gender'];
 }
 
 class ConsumerFormData {
-  String? 
-      agency,
+  String? agency,
       title,
       call,
       pay,
@@ -27,13 +34,12 @@ class ConsumerFormData {
       type,
       deadline,
       date,
-      location;
-
-  File? profile;
+      location,
+      gender,
+      profile;
 
   ConsumerFormData(
-      {
-      this.agency,
+      {this.agency,
       this.title,
       this.call,
       this.pay,
@@ -42,7 +48,8 @@ class ConsumerFormData {
       this.deadline,
       this.date,
       this.location,
-      this.profile});
+      this.profile,
+      this.gender});
 
   Map<String, dynamic> toJson() => {
         'agency': agency,
@@ -55,5 +62,6 @@ class ConsumerFormData {
         'date': date,
         'location': location,
         'profile': profile,
+        'gender': gender,
       };
 }
